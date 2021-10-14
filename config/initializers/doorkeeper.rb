@@ -357,8 +357,8 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
   # TODO:
-  # grant_flows %w[authorization_code client_credentials]
-  grant_flows %w[password]
+  grant_flows %w[authorization_code client_credentials]
+  # grant_flows %w[password]
 
   # Allows to customize OAuth grant flows that +each+ application support.
   # You can configure a custom block (or use a class respond to `#call`) that must
@@ -512,7 +512,7 @@ Doorkeeper::JWT.configure do
   # about the user. Defaults to a randomly generated token in a hash:
   #     { token: "RANDOM-TOKEN" }
   token_payload do |opts|
-    user = User.find(opts[:resource_owner_id])
+    # user = User.find(opts[:resource_owner_id])
 
     {
       iss: 'My App',
@@ -522,8 +522,8 @@ Doorkeeper::JWT.configure do
       jti: SecureRandom.uuid,
 
       user: {
-        id: user.id,
-        email: user.email
+        id: 1,
+        email: 'foo@bar.com'
       }
     }
   end

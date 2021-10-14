@@ -9,5 +9,9 @@ module Api
     def current_user
       @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id])
     end
+
+    def current_application
+      @current_application = Doorkeeper::Application.find_by(uid: doorkeeper_token.application.uid)
+    end
   end
 end
